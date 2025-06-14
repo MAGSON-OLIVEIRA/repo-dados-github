@@ -1,1 +1,39 @@
-
+name: Exemplo Input
+run-name: exempo workflow para impput exe po ${{github.actor}}
+on:
+    workflow_dispatch:
+        inputs:
+            versao:
+                type: string
+                required: true
+                default: "dev"
+                description: "versao da novo release"
+            numero_card:
+                type: number
+                required: true
+                description: "numero do card da terefa desse commit"
+            fazer_deploy:
+                type: boolean
+                required: true
+                description: "deve ou não fazer depoly"
+            ambiente:
+                type: choice
+                required: true
+                description: "ambiente de deploy"
+                options:
+                    - desenvolvimento
+                    - homologacao
+                    - producao
+jobs:
+    valores_input:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Exibindo o contexet tudo
+              run: echo "${{toJson(inputs)}}"
+            - name: Exibindo os comandos indiviudualmentes
+              run: |
+                echo "esse são os valore dos inputs"
+                echo "versão e: ${{inputs.versao}}"
+                echo "card e: ${{inputs.numero_card}}"
+                echo "deploy e: ${{inputs.fazer_deploy}}"
+                echo "ambiente e: ${{inputs.ambiente}}"
