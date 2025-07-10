@@ -2,16 +2,15 @@ name: wORKFLOW Evento
 on:
   workflow_dispatch:
     inputs:
-      valor_numerico:
-        type: number
-        default: 20
-      valor_string:
-        type: string
-        default: "xpto"
-      valur_boolean:
-        type: boolean
-        default: true
-
+        valor_numerico:
+          type: number
+          default: 20
+        valor_string:
+          type: string
+          default: "xpto"
+        valor_boolean:
+          type: boolean
+          default: true
 jobs:
     teste:
       permissions: write-all
@@ -22,4 +21,4 @@ jobs:
         - name: operação number
           run: echo "${{inputs.valor_numerico > 20}}"
         - name: operação boolean
-          run: echo "${{!inputs.valur_boolean}}"
+          run: echo "${{!inputs.valor_boolean}}"
