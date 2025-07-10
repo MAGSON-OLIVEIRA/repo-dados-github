@@ -22,3 +22,9 @@ jobs:
           run: echo "${{ inputs.valor_numerico > 20 }}"
         - name: operação boolean
           run: echo "${{ !inputs.valor_boolean }}"
+        - name: func conteins
+          run: echo "${{ contains(inputs.valor_string, github.actor) }}"
+        - name: func format
+          run: "echo ${{ format('Formato string: {0} - format num: {1} -boolesn: {2}', inputs.valor_string, inputs.valor_numerico, inputs.valor_boolean ) }}"
+        - name: func json
+          run: echo "${{ toJson(github) }}"
