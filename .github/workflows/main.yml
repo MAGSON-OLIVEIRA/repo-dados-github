@@ -1,48 +1,25 @@
-name: Exemplo artifact
-run-name: exempo workflow para artifact exe po ${{github.actor}}
+name: wORKFLOW Evento
 on:
-    workflow_dispatch:
-env:
-  nome-artefato: test-artefatos
+  workflow_dispatch:
+    inputs:
+      valor_numerico:
+        type: number
+        default: 20
+      valor_string:
+        type: string
+        default: "xpto"
+      valur_boolean:
+        type: boolean
+        default: true
 
 jobs:
-    upload-artifact:
-        runs-on: ubuntu-latest
-        steps:
-            - name: listagem de arquivos
-              run: ls
-            - name: gerar alguns arquivos 
-              run: |
-                mkdir artefatos
-                echo "arq 01" > ./artefatos/arq01.txt
-                echo "arq 02" > ./artefatos/arq02.txt
-                echo "arq 03" > ./artefatos/arq03.txt
-                echo "arq 04" > ./artefatos/arq04.txt
-
-            - name: Envio dos arquivos
-              uses: actions/upload-artifact@v4
-              id: upload-artifact
-              with:
-                name: ${{env.nome-artefato}}
-                path: ./artefatos
-
-            - name: LIsta de arq
-              run: ls
-
-            - name: link artefatos
-              run: |
-                echo "${{steps.upload-artifact.outputs.artifact-url}}"
-    download-artifact:
-        runs-on: ubuntu-latest
-        needs: [upload-artifact]
-        steps:
-            - name: listagem de arquivos
-              run: ls
-
-            - name: download artifect
-              uses: actions/download-artifact@v4
-              with:
-                  name: ${{env.nome-artefato}}
-            - name: listagem de arquivos
-              run: ls
-
+    teste:
+      permissions: write-all
+      runs-on: ubunut-latest
+      steps:
+        - name: operação string
+          run: echo "${{github.actor == inputs.valor_string}}"
+        - name: operação number
+          run: echo "${{inputs.valor_numerico > 20}}"
+        - name: operação boolean
+          run: echo "${{!inputs.valur_boolean}}"
