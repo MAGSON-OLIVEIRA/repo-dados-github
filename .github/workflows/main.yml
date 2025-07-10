@@ -17,8 +17,8 @@ jobs:
       runs-on: ubunut-latest
       steps:
         - name: operação string
-          run: echo "${{github.actor == inputs.valor_string}}"
+          run: echo "${{ github.actor == inputs.valor_string }}"
         - name: operação number
-          run: echo "${{inputs.valor_numerico > 20}}"
+          run: echo "${{ inputs.valor_numerico > 20 }}"
         - name: operação boolean
-          run: echo "${{!inputs.valor_boolean}}"
+          run: echo "${{ !inputs.valor_boolean }}"
