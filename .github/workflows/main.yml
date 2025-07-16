@@ -22,8 +22,8 @@ jobs:
           run: echo "exec so na main"
 
         - name: Exec main
-          if: ${{ github.re == 'refs/heads/main' }}
-          run: echo "exec so na main"
+          if: ${{ github.ref == 'refs/heads/main' }}
+          run: ech "exec so na main"
 
         - name: Exec envio error
           if: ${{ failure()}}
