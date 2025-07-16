@@ -9,3 +9,18 @@ jobs:
       steps:
         - name: Exec main
           run: echo "exec so na main"
+    todos:
+      name: exec todas
+      runs-on: ubuntu-latest
+      steps:
+        - name: Exec feature
+          if: ${{ contains(github.ref, 'refs/heads/feature' ) }}
+          run: echo "exec so na main"
+
+        - name: Exec hotfix
+          if: ${{ contains(github.ref, 'refs/heads/hotfix' ) }}
+          run: echo "exec so na main"
+
+        - name: Exec main
+          if: ${{ github.ref == 'refs/heads/main' }}
+          run: echo "exec so na main"
