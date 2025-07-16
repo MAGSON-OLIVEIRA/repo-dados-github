@@ -2,29 +2,16 @@ name: wORKFLOW Evento
 on:
   push:
 jobs:
-    apenas-main:
-      if: ${{ github.ref == 'refs/heads/main' }}
-      name: exec na branch main
-      runs-on: ubuntu-latest
-      steps:
-        - name: Exec main
-          run: echo "exec so na main"
-    todos:
-      name: exec todas
-      runs-on: ubuntu-latest
-      steps:
-        - name: Exec feature
-          if: ${{ contains(github.ref, 'refs/heads/feature' ) }}
-          run: echo "exec so na main"
+  exemp-f-01:
+    runs-on: ubuntu-latest
+    steps:
+      - name: vai falhar
+        run: 1
+  exemp-f-02:
+    runs-on: ubuntu-latest
+    needs: [exemp-f-01]
+    if: ${{ failure() }}
+    steps:
+      - name: vai falhar
+        run: 1
 
-        - name: Exec hotfix
-          if: ${{ contains(github.ref, 'refs/heads/hotfix' ) }}
-          run: echo "exec so na main"
-
-        - name: Exec main
-          if: ${{ github.ref == 'refs/heads/main' }}
-          run: ech "exec so na main"
-
-        - name: Exec envio error
-          if: ${{ failure()}}
-          run: echo "enviar errorf"
