@@ -12,6 +12,6 @@ jobs:
     needs: [exemp-f-01]
     if: ${{ failure() }}
     steps:
-      - name: vai falhar
-        run: 1
+      - name: vai da bom. 
+        run: echo "vai assim mesmo"
 
