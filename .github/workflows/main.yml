@@ -1,30 +1,11 @@
 name: wORKFLOW Evento
 on:
-  workflow_dispatch:
-    inputs:
-        valor_numerico:
-          type: number
-          default: 20
-        valor_string:
-          type: string
-          default: "xpto"
-        valor_boolean:
-          type: boolean
-          default: true
+  push:
 jobs:
-    teste:
-      permissions: write-all
+    apenas-main:
+      if: ${{ github.ref == 'refs/heads/main' }}
+      name: exec na branch main
       runs-on: ubuntu-latest
       steps:
-        - name: operação string
-          run: echo "${{ github.actor == inputs.valor_string }}"
-        - name: operação number
-          run: echo "${{ inputs.valor_numerico > 20 }}"
-        - name: operação boolean
-          run: echo "${{ !inputs.valor_boolean }}"
-        - name: func conteins
-          run: echo "${{ contains(inputs.valor_string, github.actor) }}"
-        - name: func format
-          run: "echo ${{ format('Formato string: {0} - format num: {1} -boolesn: {2}', inputs.valor_string, inputs.valor_numerico, inputs.valor_boolean ) }}"
-        - name: func json
-          run: echo "${{ toJson(github) }}"
+        - name: Exec main
+          run: echo "exec so na main"
