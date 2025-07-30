@@ -5,14 +5,14 @@ jobs:
   exemp-fluxo-exec:
     strategy:
       matrix:
-        version: [10, 12, 14]
-        plataforma:  [ubuntu-latest, windows-latest]
-    runs-on: "${{ matrix.plataforma }} - latest"
+        versao: [16, 18, 20]
+        plataforma:  [ubuntu, windows]
+    runs-on: "${{ matrix.plataforma }}-latest"
     steps:
       - name: Instalacao do node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.version }}
+          node-version: ${{ matrix.versao }}
       - name: Exibicao da versao e da plataform
         run: | 
           node --version
