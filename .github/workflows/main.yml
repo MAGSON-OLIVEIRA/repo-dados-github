@@ -1,20 +1,13 @@
-name: Workflow Matriz2
-on:
-  workflow_dispatch:
+name: CI/CD Fake
+on: 
+    workflow_dispatch:  
 jobs:
-  exemp-fluxo-exec:
-    strategy:
-      matrix:
-        versao: [16, 18, 20]
-        plataforma:  [ubuntu, windows]
-    runs-on: "${{ matrix.plataforma }}-latest"
-    steps:
-      - name: Instalacao do node
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.versao }}
-      - name: Exibicao da versao e da plataform
-        run: | 
-          node --version
-          echo ${{ runner.os }}
-
+    CI:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Build de Imagem Docker
+              run: echo "Execução do comando de docker build"
+            - name: Execução de Testes de Software
+              run: echo "Aqui eu executo o teste de software"
+            - name: Publicando a Release
+              run: echo "Publicação da Relase final"
